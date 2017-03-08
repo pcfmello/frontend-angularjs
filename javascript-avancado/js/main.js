@@ -12,4 +12,38 @@ function getTotal(list) {
 	return total;
 }
 
+function setList(list) {
+
+	let tableContent = `
+		<thead>
+			<tr>
+				<th>Descrição</th>
+				<th>Quantidade</th>
+				<th>Preço</th>
+			</tr>
+		</thead>
+		<tbody>
+			${ generateTableItems(list) }
+		</tbody>
+	`;
+
+
+	document.querySelector('#table-list').innerHTML = tableContent;
+}
+
+// GERA AS LINHAS DA TABELA COM OS DADOS DA LISTA
+function generateTableItems(list) {
+	let rows = '';
+	list.forEach((item) => {
+		rows += `
+			<tr>
+				<td>${ item.description }</td>
+				<td>${ item.amount }</td>
+				<td>${ item.value }</td>
+			</tr>`;
+	});
+	return rows;
+}
+
 console.log(getTotal(list));
+setList(list);
