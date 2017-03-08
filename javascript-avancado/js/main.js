@@ -51,7 +51,7 @@ function formatDescription(description) {
 
 function formatValue(value) {
 	// TRANSFORMA O VALOR EM DECIMAL E DEPOIS PARA STRING
-	let string = "$ " + (parseFloat(value).toFixed(2));
+	let string = `$ ${ parseFloat(value).toFixed(2) }`;
 	// SUBSTITUI O PONTO POR VIRGULA
 	string = string.replace(".", ",");
 	return string;
