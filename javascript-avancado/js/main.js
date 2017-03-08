@@ -13,21 +13,17 @@ function getTotal(list) {
 }
 
 function setList(list) {
-
-	let tableContent = `
-		<thead>
-			<tr>
-				<th>Descrição</th>
-				<th>Quantidade</th>
-				<th>Preço</th>
-			</tr>
-		</thead>
-		<tbody>
-			${ generateTableItems(list) }
-		</tbody>
-	`;
-
-
+	let tableContent = 
+	`<thead>
+		<tr>
+			<th>Descricao</th>
+			<th>Quantidade</th>
+			<th>Preco</th>
+		</tr>
+	</thead>
+	<tbody>
+		${ generateTableItems(list) }
+	</tbody>`;
 	document.querySelector('#table-list').innerHTML = tableContent;
 }
 
@@ -35,14 +31,30 @@ function setList(list) {
 function generateTableItems(list) {
 	let rows = '';
 	list.forEach((item) => {
-		rows += `
-			<tr>
-				<td>${ item.description }</td>
-				<td>${ item.amount }</td>
-				<td>${ item.value }</td>
-			</tr>`;
+		rows += 
+		`<tr>
+			<td>${ formatDescription(item.description) }</td>
+			<td>${ item.amount }</td>
+			<td>${ formatValue(item.value) }</td>
+		</tr>`;
 	});
 	return rows;
+}
+
+function formatDescription(description) {
+	// TRANSFORMA A DESCRIÇÃO PARA MINÚSCULO
+	let string = description.toLowerCase();
+	// DEIXANDO A PRIMEIRA LETRA MAIÚSCULA
+	string = string.charAt(0).toUpperCase() + string.slice(1);
+	return string;
+}
+
+function formatValue(value) {
+	// TRANSFORMA O VALOR EM DECIMAL E DEPOIS PARA STRING
+	let string = "$ " + (parseFloat(value).toFixed(2));
+	// SUBSTITUI O PONTO POR VIRGULA
+	string = string.replace(".", ",");
+	return string;
 }
 
 console.log(getTotal(list));
