@@ -12,6 +12,7 @@ function getTotal(list) {
 	return total;
 }
 
+// LISTA OS PRODUTOS NA TELA INICIAL
 function setList(list) {
 	let tableContent = 
 	`<thead>
@@ -41,6 +42,7 @@ function generateTableItems(list) {
 	return rows;
 }
 
+// FORMATA O TEXTO DA DESCRIÇÃO
 function formatDescription(description) {
 	// TRANSFORMA A DESCRIÇÃO PARA MINÚSCULO
 	let string = description.toLowerCase();
@@ -49,6 +51,7 @@ function formatDescription(description) {
 	return string;
 }
 
+// FORMATA O VALOR
 function formatValue(value) {
 	// TRANSFORMA O VALOR EM DECIMAL E DEPOIS PARA STRING
 	let string = `$ ${ parseFloat(value).toFixed(2) }`;
@@ -57,5 +60,18 @@ function formatValue(value) {
 	return string;
 }
 
-console.log(getTotal(list));
+// ADICIONA O PRODUTO NA LISTA COM OS CAMPOS DE ENTRADA
+function addData() {
+	let description = document.querySelector('#description').value;
+	let amount = document.querySelector('#amount').value;
+	let value = document.querySelector('#value').value;
+	// ADICIONA O OBJETO NO INÍCIO DA LISTA
+	list.unshift({ 
+		description: description, 
+		amount: amount, 
+		value: value 
+	});
+	setList(list);
+}
+
 setList(list);
