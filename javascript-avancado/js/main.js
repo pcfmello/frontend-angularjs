@@ -20,6 +20,7 @@ function setList(list) {
 			<th>Descricao</th>
 			<th>Quantidade</th>
 			<th>Preco</th>
+			<th colspan="2">Acoes</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -31,14 +32,16 @@ function setList(list) {
 // GERA AS LINHAS DA TABELA COM OS DADOS DA LISTA
 function generateTableItems(list) {
 	let rows = '';
-	list.forEach((item) => {
+	// list.forEach((item) => {
+	for(let index in list) {	
 		rows += 
 		`<tr>
-			<td>${ formatDescription(item.description) }</td>
-			<td>${ item.amount }</td>
-			<td>${ formatValue(item.value) }</td>
+			<td>${ formatDescription(list[index].description) }</td>
+			<td>${ list[index].amount }</td>
+			<td>${ formatValue(list[index].value) }</td>
+			<td><button class="btn btn-warning" onclick="setUpdate(${ index });">Editar</button> <button class="btn btn-danger" onclick="">Deletar</button></td>
 		</tr>`;
-	});
+	};
 	return rows;
 }
 
@@ -72,6 +75,30 @@ function addData() {
 		value: value 
 	});
 	setList(list);
+}
+
+// SETA OS CAMPOS COM OS DADOS DO OBJETO PARA ALTERAÇÃO
+function setUpdate(index) {
+	// busca o item no array através do índice
+	let obj = list[index];
+	// seta os valores do objeto recebido nos campos do formulário
+	document.querySelector('#description').value = obj.description;
+	document.querySelector('#amount').value = obj.amount;
+	document.querySelector('#value').value = obj.value;
+	// mostra os botões de ações para atualizar/limpar
+	document.querySelector('#btnUpdate').style.display = "inline-block";
+	// esconde o botão adicionar
+	document.querySelector('#btnAdd').style.display = "none";
+}
+
+// LIMPA OS CAMPOS DO FORMULÁRIO
+function resetForm() {
+	document.querySelector('#description').value = "";
+	document.querySelector('#amount').value = "";
+	document.querySelector('#value').value = "";
+
+	document.querySelector('#btnUpdate').style.display = "none";
+	document.querySelector('#btnAdd').style.display = "inline-block";
 }
 
 setList(list);
