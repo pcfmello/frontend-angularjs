@@ -39,7 +39,7 @@ function generateTableItems(list) {
 			<td>${ formatDescription(list[index].description) }</td>
 			<td>${ list[index].amount }</td>
 			<td>${ formatValue(list[index].value) }</td>
-			<td><button class="btn btn-warning" onclick="setUpdate(${ index });">Editar</button> <button class="btn btn-danger" onclick="">Deletar</button></td>
+			<td><button class="btn btn-warning" onclick="setUpdate(${ index });">Editar</button> <button class="btn btn-danger" onclick="deleteData(${ index })">Deletar</button></td>
 		</tr>`;
 	};
 	return rows;
@@ -81,6 +81,8 @@ function addData() {
 function setUpdate(index) {
 	// busca o item no array através do índice
 	let obj = list[index];
+	// insere o input hidden com o indice da lista no html dinamicamente
+	document.querySelector('#inputIdUpdate').innerHTML = `<input id="idUpdate" type="hidden" value="${ index }" />`;
 	// seta os valores do objeto recebido nos campos do formulário
 	document.querySelector('#description').value = obj.description;
 	document.querySelector('#amount').value = obj.amount;
@@ -89,8 +91,6 @@ function setUpdate(index) {
 	document.querySelector('#btnUpdate').style.display = "inline-block";
 	// esconde o botão adicionar
 	document.querySelector('#btnAdd').style.display = "none";
-	// insere o input hidden com o indice da lista no html dinamicamente
-	document.querySelector('#inputIdUpdate').innerHTML = `<input id="idUpdate" type="hidden" value="${ index }" />`;
 }
 
 // LIMPA OS CAMPOS DO FORMULÁRIO
@@ -119,6 +119,17 @@ function updateData() {
 	}
 
 	resetForm();
+	setList(list);
+}
+
+// DELETA O OBJETO DA LISTA
+function deleteData(index) {
+	if(confirm("Deseja deletar esse item?")) {
+		// retorna uma nova lista sem o objeto do índice do parâmetro
+		list = list.filter((item) => list[index] !== item );
+	}
+	
+	
 	setList(list);
 }
 
