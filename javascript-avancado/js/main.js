@@ -89,6 +89,8 @@ function setUpdate(index) {
 	document.querySelector('#btnUpdate').style.display = "inline-block";
 	// esconde o botão adicionar
 	document.querySelector('#btnAdd').style.display = "none";
+	// insere o input hidden com o indice da lista no html dinamicamente
+	document.querySelector('#inputIdUpdate').innerHTML = `<input id="idUpdate" type="hidden" value="${ index }" />`;
 }
 
 // LIMPA OS CAMPOS DO FORMULÁRIO
@@ -96,9 +98,28 @@ function resetForm() {
 	document.querySelector('#description').value = "";
 	document.querySelector('#amount').value = "";
 	document.querySelector('#value').value = "";
+	document.querySelector('#inputIdUpdate').innerHTML = "";
 
 	document.querySelector('#btnUpdate').style.display = "none";
 	document.querySelector('#btnAdd').style.display = "inline-block";
+}
+
+// ATUALIZA O OBJETO
+function updateData() {
+	let id = document.querySelector('#idUpdate').value;
+	let description = document.querySelector('#description').value;
+	let amount = document.querySelector('#amount').value;
+	let value = document.querySelector('#value').value;
+
+	// substitui o objeto da lista
+	list[id] = { 
+		description: description, 
+		amount: amount, 
+		value: value
+	}
+
+	resetForm();
+	setList(list);
 }
 
 setList(list);
