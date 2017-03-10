@@ -5,11 +5,11 @@ let list = [
 	{ description: "meat", amount: "1", value: 29.59 }
 ];
 
-// RETORNA O VALOR TOTAO DE TODOS OS PRODUTOS X  QUANTIDADE
+// ATUALIZA VALOR TOTAL DE TODOS OS PRODUTOS X  QUANTIDADE
 function getTotal(list) {
 	let total = 0;
 	list.forEach((item) => total += item.value * item.amount);
-	return total;
+	document.querySelector('#totalValue').innerHTML = formatValue(total);
 }
 
 // LISTA OS PRODUTOS NA TELA INICIAL
@@ -27,6 +27,7 @@ function setList(list) {
 		${ generateTableItems(list) }
 	</tbody>`;
 	document.querySelector('#table-list').innerHTML = tableContent;
+	getTotal(list);
 }
 
 // GERA AS LINHAS DA TABELA COM OS DADOS DA LISTA
