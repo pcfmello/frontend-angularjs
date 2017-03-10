@@ -186,4 +186,12 @@ function validation() {
 
 }
 
+// DELETA A LISTA DE PRODUTOS
+function deleteList() {
+	if(confirm('Deseja deletar a lista?')) {
+		list = [];
+		setList(list);
+	}
+}
+
 setList(list);

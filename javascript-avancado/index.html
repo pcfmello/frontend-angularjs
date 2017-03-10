@@ -29,7 +29,11 @@
 					<button class="btn btn-default" onclick="updateData();">Salvar</button>
 					<button class="btn btn-default" onclick="resetForm();">Cancelar</button>
 				</span>
-				<button id="btnAdd" class="btn btn-default" onclick="addData();">Adicionar</button>	
+				<span id="btnAdd">
+					<button class="btn btn-default" onclick="addData();">Adicionar</button>
+					<button class="btn btn-default" onclick="resetForm();">Cancelar</button>
+					<button class="btn btn-default" onclick="deleteList();">Deletar lista</button>
+				</span>	
 			</div>
 
 			<div class="alert alert-danger" id="errors" style="display: none;"></div>
