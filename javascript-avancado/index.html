@@ -14,7 +14,7 @@
 		</nav>
 
 		<div class="container-fluid">
-			<div class="form-inline">
+			<div class="form-inline" style="margin-bottom: 30px;">
 				<div class="form-group">
 					<input type="text" class="form-control" id="description" placeholder="Descricao">
 				</div>
@@ -31,6 +31,8 @@
 				</span>
 				<button id="btnAdd" class="btn btn-default" onclick="addData();">Adicionar</button>	
 			</div>
+
+			<div class="alert alert-danger" id="errors" style="display: none;"></div>
 
 			<table id="table-list" class="table"></table>
 		</div>	

@@ -32,12 +32,11 @@ function setList(list) {
 // GERA AS LINHAS DA TABELA COM OS DADOS DA LISTA
 function generateTableItems(list) {
 	let rows = '';
-	// list.forEach((item) => {
 	for(let index in list) {	
 		rows += 
 		`<tr>
 			<td>${ formatDescription(list[index].description) }</td>
-			<td>${ list[index].amount }</td>
+			<td>${ formatAmount(list[index].amount) }</td>
 			<td>${ formatValue(list[index].value) }</td>
 			<td><button class="btn btn-warning" onclick="setUpdate(${ index });">Editar</button> <button class="btn btn-danger" onclick="deleteData(${ index })">Deletar</button></td>
 		</tr>`;
@@ -47,28 +46,37 @@ function generateTableItems(list) {
 
 // FORMATA O TEXTO DA DESCRIÇÃO
 function formatDescription(description) {
-	// TRANSFORMA A DESCRIÇÃO PARA MINÚSCULO
+	// transforma a descrição para minúsculo
 	let string = description.toLowerCase();
-	// DEIXANDO A PRIMEIRA LETRA MAIÚSCULA
+	// transforma a primeira letra em maiúsculo
 	string = string.charAt(0).toUpperCase() + string.slice(1);
 	return string;
 }
 
+// FORMATA A QUANTIDADE
+function formatAmount(amount) {
+	// converte a string para um valor inteiro
+	return parseInt(amount);
+}
+
 // FORMATA O VALOR
 function formatValue(value) {
-	// TRANSFORMA O VALOR EM DECIMAL E DEPOIS PARA STRING
+	// transforma o valor de string para decimal e depois para string
 	let string = `$ ${ parseFloat(value).toFixed(2) }`;
-	// SUBSTITUI O PONTO POR VIRGULA
+	// substitui o ponto por vírgula
 	string = string.replace(".", ",");
 	return string;
 }
 
 // ADICIONA O PRODUTO NA LISTA COM OS CAMPOS DE ENTRADA
 function addData() {
+	if(!validation()) {
+		return;
+	}
 	let description = document.querySelector('#description').value;
 	let amount = document.querySelector('#amount').value;
 	let value = document.querySelector('#value').value;
-	// ADICIONA O OBJETO NO INÍCIO DA LISTA
+	// adiciona o objeto no início da lista
 	list.unshift({ 
 		description: description, 
 		amount: amount, 
@@ -102,10 +110,15 @@ function resetForm() {
 
 	document.querySelector('#btnUpdate').style.display = "none";
 	document.querySelector('#btnAdd').style.display = "inline-block";
+	// faz a caixa de mensagens de erro desaparecer
+	document.querySelector('#errors').style.display = 'none';
 }
 
 // ATUALIZA O OBJETO
 function updateData() {
+	if(!validation()) {
+		return;
+	}
 	let id = document.querySelector('#idUpdate').value;
 	let description = document.querySelector('#description').value;
 	let amount = document.querySelector('#amount').value;
@@ -128,9 +141,48 @@ function deleteData(index) {
 		// retorna uma nova lista sem o objeto do índice do parâmetro
 		list = list.filter((item) => list[index] !== item );
 	}
-	
-	
+
 	setList(list);
+}
+
+// VALIDA OS DADOS DO FORMULÁRIO
+function validation() {
+	let description = document.querySelector('#description').value;
+	let amount = document.querySelector('#amount').value;
+	let value = document.querySelector('#value').value;
+	let errors = '';
+
+	// verifica se a descrição está vazia
+	if(!description) {
+		errors += `<p>Digite uma descricao</p>`;
+	}
+
+	// verifica se o quantidade está vazio ou inválida
+	if(!amount) {
+		errors += `<p>Digite uma quantidade</p>`;
+	} else if(amount != parseInt(amount)) {
+		errors += `<p>Quantidade invalida</p>`;
+	}
+
+	// verifica se o valor está vazio ou inválido
+	if(!value) {
+		errors += `<p>Digite um valor</p>`;
+	} else if(value != parseFloat(value)) {
+		errors += `<p>Valor invalido</p>`;
+	}
+
+	if(!!errors) {
+		// faz a caixa de mensagens de erro aparecer
+		document.querySelector('#errors').style.display = 'block';
+		// seta o html gerado dentro do documento
+		document.querySelector('#errors').innerHTML = errors;
+		return false;
+	} else {
+		// faz a caixa de mensagens de erro desaparecer
+		document.querySelector('#errors').style.display = 'none';
+		return true
+	}
+
 }
 
 setList(list);
