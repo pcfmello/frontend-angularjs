@@ -28,6 +28,7 @@ function setList(list) {
 	</tbody>`;
 	document.querySelector('#table-list').innerHTML = tableContent;
 	getTotal(list);
+	saveListStorage(list);
 }
 
 // GERA AS LINHAS DA TABELA COM OS DADOS DA LISTA
@@ -194,4 +195,25 @@ function deleteList() {
 	}
 }
 
-setList(list);
+// SALVA A LISTA NO LOCALSTORAGE
+function saveListStorage(list) {
+	// transforma a lista em string
+	let jsonString = JSON.stringify(list);
+	// eta a lista no localstorage
+	localStorage.setItem('list', jsonString);
+}
+
+//BUSCA A LISTA NO LOCALSTORAGE
+function iniListStorage() {
+	// buscando a lista no localstorage
+	let testList = localStorage.getItem('list');
+	// verifica se a lista existe
+	if(testList){
+		// converve a string em lista
+		list = JSON.parse(testList);
+	}
+	
+	setList(list);
+}
+
+iniListStorage();
