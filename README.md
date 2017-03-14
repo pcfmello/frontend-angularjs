@@ -24,10 +24,10 @@ Para esse módulo é necessário ter instalado:
 * [Gulp 4+](http://gulpjs.com/) (um gerenciador de tarefas)
 * [Yeoman](http://yeoman.io/) (um boilerplate que ajuda você a criar novos projetos, utilizando melhores práticas e ferramentas para ajudá-lo em sua produtividade)
 * [Fountain Angular 1 Generator](https://github.com/FountainJS/generator-fountain-angular1), que cria uma estrutura/configuração inicial de uma aplicação AngularJS 1 utilizando: 
-> Gerenciador de tarefas: Gulp
-> Gerenciador de módulos: Webpack, SystemJS ou nenhum
-> Pré-processadores JS: Babel, TypeScript ou nenhum
-> Pré-processadores CSS: SASS, Stylus, Less ou nenhum
+Gerenciador de tarefas: Gulp
+Gerenciador de módulos: Webpack, SystemJS ou nenhum
+Pré-processadores JS: Babel, TypeScript ou nenhum
+Pré-processadores CSS: SASS, Stylus, Less ou nenhum
 Resumindo, o Yeoman Fountain Generator é um sub-gerador do Yeoman.  
 
 
