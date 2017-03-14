@@ -21,14 +21,14 @@ Esse é um projeto de aprendizado de __AngularJS__ que inclui um projeto de Java
 ### Iniciando com AngularJS 1.5
 Para esse módulo é necessário ter instalado:  
 * [Node.js](https://nodejs.org)
-* [Gulp 4+](http://gulpjs.com/) (um gerenciador de tarefas)
+* [Gulp 4+](http://gulpjs.com/) (um gerencSiador de tarefas)
 * [Yeoman](http://yeoman.io/) (um boilerplate que ajuda você a criar novos projetos, utilizando melhores práticas e ferramentas para ajudá-lo em sua produtividade)
 * [Fountain Angular 1 Generator](https://github.com/FountainJS/generator-fountain-angular1), que cria uma estrutura/configuração inicial de uma aplicação AngularJS 1 utilizando: 
-Gerenciador de tarefas: Gulp
-Gerenciador de módulos: Webpack, SystemJS ou nenhum
-Pré-processadores JS: Babel, TypeScript ou nenhum
-Pré-processadores CSS: SASS, Stylus, Less ou nenhum
-Resumindo, o Yeoman Fountain Generator é um sub-gerador do Yeoman.  
+  * Gerenciador de tarefas: __Gulp__
+  * Gerenciador de módulos: __Webpack__, __SystemJS__ ou nenhum
+  * Pré-processadores JS: __Babel__, __TypeScript__ ou nenhum
+  * Pré-processadores CSS: __SASS__, __Stylus__, __Less__ ou nenhum  
+Resumindo, o __Yeoman Fountain Generator__ é um sub-gerador do __Yeoman__.  
 
 
 ### Créditos
